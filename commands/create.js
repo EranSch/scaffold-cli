@@ -10,37 +10,37 @@ module.exports = (name, type) => {
   if (!shell.which('git')) return console.log(colors.red('you must have git installed'));
   switch(type) {
     case 'api':
-      createAPI();
+      createAPI(name);
       break;
     case 'react':
-      createReact();
+      createReact(name);
       break;
     case 'react-native':
-      createReactNative();
+      createReactNative(name);
       break;
     case 'wordpress':
-      createWordPress();
+      createWordPress(name);
       break;
     default:
       console.log(colors.red('you must specify a valid project type'));
   }
 };
 
-createAPI = () => {
+createAPI = (name) => {
   console.log('creating api...');
-  shell.exec(`git clone ${config.api_repo} --quiet`);
+  shell.exec(`git clone ${config.api_repo} ${name}`);
   console.log(colors.green('success!'));
 };
 
-createReact = () => {
+createReact = (name) => {
   console.log('creating react...');
 };
 
-createReactNative = () => {
+createReactNative = (name) => {
   console.log('creating react-native...');
 };
 
-createWordPress = () => {
+createWordPress = (name) => {
   console.log('creating wordpress...');
 };
 
