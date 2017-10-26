@@ -1,0 +1,25 @@
+{
+  "name": "scaffold-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvideby0/scaffold-cli.git"
+  },
+  "author": "352inc <devops@352inc.com> (http://352inc.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvideby0/scaffold-cli/issues"
+  },
+  "homepage": "https://github.com/dvideby0/scaffold-cli#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.11.0",
+    "replace-in-file": "^3.0.0-beta.2",
+    "shelljs": "^0.7.8"
+  }
+}
