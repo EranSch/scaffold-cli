@@ -1,3 +1,3 @@
-#scaffold-cli
+##scaffold-cli
 
 TODO: fill out readme
