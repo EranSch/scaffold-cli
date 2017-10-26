@@ -1,62 +1,20 @@
 const colors = require('colors');
 const shell = require('shelljs');
-const replace = require('replace-in-file');
+const { keys } = require('lodash');
 
-const config = require('../config');
+const handlers = require('../handlers');
+const prompt = require('../helpers/prompt');
 
-module.exports = (name, type) => {
-  if (!name) return console.log(colors.red('you must specify a project name'));
-  if (!type) return console.log(colors.red('you must specify a project type'));
+module.exports = async (name, type) => {
+
+  if (!name) name = await prompt('What is the name of your project?');
+
+  if (!type) type = await prompt('Which type of project would you like to create?', keys(handlers));
+
+  if (!handlers[type]) type = await prompt('Invalid project type specific, please select from list below:', keys(handlers));
+
   if (!shell.which('git')) return console.log(colors.red('you must have git installed'));
-  switch(type) {
-    case 'api':
-      createAPI(name);
-      break;
-    case 'react':
-      createReact(name);
-      break;
-    case 'react-native':
-      createReactNative(name);
-      break;
-    case 'wordpress':
-      createWordPress(name);
-      break;
-    default:
-      console.log(colors.red('you must specify a valid project type'));
-  }
+
+  handlers[type](name);
+
 };
-
-createAPI = (name) => {
-  console.log('creating api...');
-  shell.exec(`git clone ${config.api_repo} ${name}`);
-  console.log(colors.green('success!'));
-};
-
-createReact = (name) => {
-  console.log('creating react...');
-};
-
-createReactNative = (name) => {
-  console.log('creating react-native...');
-};
-
-createWordPress = (name) => {
-  console.log('creating wordpress...');
-};
-
-/*
-
-
-const options = {
-  files: ['directory/!**!/!*.js'],
-  from: /{{app-name}}/g,
-  to: 'Rich',
-};
-
-replace(options)
-  .then(changedFiles => {
-    console.log('Modified files:', changedFiles.join(', '));
-  })
-  .catch(error => {
-    console.error('Error occurred:', error);
-  });*/
